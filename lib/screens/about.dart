@@ -12,10 +12,27 @@ class Designer extends StatefulWidget {
 class _DesignerState extends State<Designer> {
   @override
   Widget build(BuildContext context) {
+      final Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
   appBar: AppBar(
     centerTitle: true,
-    title:const Text ('Product Designer'),
+    title:const Text ('Product Designer',
+    style: TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold
+    ),
+    ),
+    actions: <Widget>[
+    IconButton(
+      icon: const Icon(
+        Icons.bookmark,
+        color: Colors.grey,
+      ),
+      onPressed: () {
+        // do something
+      },
+    )
+  ],
   ),
 
 body: Column(
@@ -25,20 +42,26 @@ body: Column(
           children: <Widget>[
          const ListTile(
          leading:  CircleAvatar(
-          radius: 50,
-          backgroundImage: AssetImage("images/photo3.jpg"),
+          radius: 30,
+          backgroundImage: AssetImage("images/photo1.jpg"),
        ),
-              title: Center(child: Text("Sushant Kumar", style: TextStyle(fontSize: 20),),) ,
-              subtitle: Center(child: Text("Junior Software Developer", style: TextStyle(fontSize: 15)),),
+              title: Center(child: Text("RampUp, Inc", 
+              style: TextStyle(fontSize: 18),
+              ),
+              ) ,
+              subtitle: Center(child: Text("Full-time\n San Francisco Bay Area", 
+              style: TextStyle(fontSize: 13),
+              ),
+              ),
             ),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
              // ignore: avoid_unnecessary_containers
-             Container(
-              child: const Text('We are looking for a product designer who is\n passionate about creating the best user\n experience'),
-
+             Padding(
+               padding: EdgeInsets.all(8.0),
+               child: Text('We are looking for a product designer who is\n passionate about creating the best user\n experience'),
              )
               
               ],
@@ -46,43 +69,75 @@ body: Column(
                
                const Padding(
                  padding: EdgeInsets.all(8.0),
-                 child: Text('About the Job', style: TextStyle(fontSize: 20)),
+                 child: Text('About the Job', 
+                 style: TextStyle(fontSize: 20,
+                 fontWeight: FontWeight.bold
+                 ),
+                 ),
                ),
           
-          const Divider(),
+          const Divider(
+            color: Color.fromARGB(255, 194, 184, 184),
+            height:20 ,
+          ),
+        Row(
+        
+      children: [
+      Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(2.0),
+            margin: const EdgeInsets.all(4.0),
+           child: const Text('Responsibilities'),
+             ),
+            Container(
+           child: const Text('-Work closely with\nproduct managers and\nengineers to design user\nflows-Create low-\nfidelity wireframes and\nhigh-fidelity designs-\nConduct usability tests', textAlign: TextAlign.center,
+           style: TextStyle(
+            fontSize: 12,
+            ),
+            )
+        ),
+
+          ],
+        ),
+
         Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-              Container(
-                margin: const EdgeInsets.all(10),
-                child: Table(
-                  border: TableBorder.all(),
-                  children: const [
-                    TableRow(children: [
-                      Text('Responsibities', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
-                      Text('Qualifications', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
-                    ]),
-                    TableRow(children: [
-                      Text('-Work closely with\nproduct managers and\nengineers to design user\nflows-Create low-\nfidelity wireframes and\nhigh-fidelity designs-\nConduct usability tests', textAlign: TextAlign.center),
-                      Text('-5+ years of experience\nworking as a product designer\n-Strong communication skills\n-Experience in design consumer products ', textAlign: TextAlign.center),
-                    ]),
-                  ],
-                ),
-              ),
-            ]),
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+           Container(
+            padding: const EdgeInsets.all(2.0),
+            margin: const EdgeInsets.all(4.0),
+            child: const Text('Qualifications'),
+            ),
+            Container(
+            child:const  Text('-5+ years of experience\nworking as a product\n designer-Strong \ncommunication skills\n-Experience in design\n consumer products ', textAlign: TextAlign.center,
+            style: TextStyle(
+            fontSize: 12,
+            ),
+            )
+       )
+
+          ],
+        )
+      ],
+       ),
         
     
-        const Padding(
-              padding: EdgeInsets.all(32.0),
-              child: ElevatedButton(
-                    style: ButtonStyle( backgroundColor: MaterialStatePropertyAll(Colors.blue),
-                  ),
-                    onPressed: null,
-                      child: Text('Easy Apply',
-                      style: TextStyle( color: Colors.white),
-                      ),
+        SizedBox(
+           width: screenSize.width,
+          child: const Padding(
+                padding: EdgeInsets.all(32.0),
+                child: ElevatedButton(
+                      style: ButtonStyle( backgroundColor: MaterialStatePropertyAll(Colors.blue),
+                    ),
+                      onPressed: null,
+                        child: Text('Easy Apply',
+                        style: TextStyle( color: Colors.white),
+                        ),
+                ),
               ),
-            ),
+        ),
 
          
 
@@ -98,16 +153,16 @@ body: Column(
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.bookmark),
+            label: 'Saved',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.file_copy),
+            label: 'Applications',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.person_outline_rounded),
+            label: 'Profile',
           ),
           ],
         ),
